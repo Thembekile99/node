@@ -1,14 +1,10 @@
-const mongoose = require('mongoose');
-const uri = "mongodb://0.0.0.0:27017/todos"
-
+const Mongoose = require("mongoose")
+const localDB = 'mongodb://localhost:27017/todos'
 const connectDB = async () => {
-    try {
-        const conn = await mongoose.connect(uri, { useNewUrlParser: true });
-        console.log(`Mongo db connected: ${conn.connection.host}`);
-    } catch (error) {
-        console.log(error);
-        process.exit(1);
-    }
-};
-
-module.exports = connectDB;
+  await Mongoose.connect(localDB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  console.log("MongoDB Connected")
+}
+module.exports = connectDB
